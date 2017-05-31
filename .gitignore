@@ -1,0 +1,16 @@
+.DS_Store
+
+node_modules
+*.seed
+*.log
+*.dat
+*.out
+*.pid
+*.gz
+
+.vscode
+.idea
+
+src/client/public/*
+!src/client/public/index.html
+.env
