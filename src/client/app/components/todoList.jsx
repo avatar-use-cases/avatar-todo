@@ -7,49 +7,36 @@ import List, {
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import FolderIcon from 'material-ui-icons/Folder';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+
+import TodoItem from './TodoItem'
+
+const styleSheet = createStyleSheet('TodoList', theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    background: theme.palette.background.paper,
+  },
+}));
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      testItems: [{title: "Say Hello", completed: false},{title: "Meet a new Friend", completed: true},{title: "Add redux logic", completed: false}]
+    }
+  }
   render() {
+    const classes = this.props.classes;
+    console.log(this.state)
     return (
-      <Grid item>
+      <Grid item className={classes.root}>
         <Paper>
           <List dense={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="To-do Item"
-                secondary='Secondary text'
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="To-do Item 2"
-                secondary='Secondary text'
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="To-do Item 3"
-                secondary='Secondary text'
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="To-do Item 4"
-                secondary='Secondary text'
-              />
-            </ListItem>
+            {this.state.testItems.map((item) => {
+                return <TodoItem title={item.title} completed={item.completed} />
+              })
+            }
           </List>
         </Paper>
       </Grid>
@@ -58,4 +45,4 @@ class TodoList extends Component {
 }
 
 
-export default TodoList
+export default withStyles(styleSheet)(TodoList);

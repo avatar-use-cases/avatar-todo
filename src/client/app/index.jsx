@@ -20,8 +20,7 @@ class App extends Component {
           align={'center'}
           direction={'column'}
           justify={'flex-start'}>
-
-          <TodoList/>
+          <Grid item xs={12} md={12} sm={12}><TodoList/></Grid>
         </Grid>
       </div>
     )
